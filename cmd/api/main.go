@@ -8,6 +8,10 @@ import (
 
 func main() {
 
+	if loadErr := config.LoadEnv(); loadErr != nil {
+		log.Fatal(loadErr)
+	}
+
 	router := server.StartServer()
 
 	if err := router.Run(config.Port); err != nil {
